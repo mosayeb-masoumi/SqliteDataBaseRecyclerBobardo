@@ -38,10 +38,10 @@ public class SecondActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
 
         List<UserModel> userList = new ArrayList<>();
-        userList.add(new UserModel("ali", "rezai", 0));
-        userList.add(new UserModel("milad", "rezai", 1));
-        userList.add(new UserModel("nabi", "hasani", 0));
-        userList.add(new UserModel("gholi", "ahmadi", 1));
+        userList.add(new UserModel("ali", "rezai", "blue" , 0));
+        userList.add(new UserModel("milad", "rezai", "red" ,1));
+        userList.add(new UserModel("nabi", "hasani","green", 0));
+        userList.add(new UserModel("gholi", "ahmadi","black" ,1));
 
 
         btn_add_list.setOnClickListener(view -> {
@@ -53,6 +53,7 @@ public class SecondActivity extends AppCompatActivity {
                 UserModel userModel = new UserModel();
                 userModel.setName(userList.get(i).getName());
                 userModel.setFamily(userList.get(i).getFamily());
+                userModel.setColor(userList.get(i).getColor());
                 userModel.setLiving_status(userList.get(i).getLiving_status());
 
                 new DatabaseHelper(SecondActivity.this).insertUser(userModel);

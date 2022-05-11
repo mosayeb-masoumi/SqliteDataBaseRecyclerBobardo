@@ -107,6 +107,7 @@ public class DatabaseHelper {
         ContentValues values = new ContentValues();
         values.put("user_name" , user.getName());
         values.put("user_family" , user.getFamily());
+        values.put("user_color" , user.getColor());
         values.put("user_living_status" , user.getLiving_status());
         mydb.insert(MyDatabase.tableUser , null , values);
         mydb.close();
@@ -117,6 +118,7 @@ public class DatabaseHelper {
         ContentValues values = new ContentValues();
         values.put("user_name" , user.getName());
         values.put("user_family" , user.getFamily());
+        values.put("user_color" , user.getColor());
         values.put("user_living_status" , user.getLiving_status());
         mydb.update(MyDatabase.tableUser , values , "user_id = " + user.getId() , null);
         mydb.close();
@@ -151,6 +153,7 @@ public class DatabaseHelper {
             user.setId(c.getInt(c.getColumnIndex(MyDatabase.USER_ID)));
             user.setName(c.getString(c.getColumnIndex(MyDatabase.USER_NAME)));
             user.setFamily(c.getString(c.getColumnIndex(MyDatabase.USER_FAMILY)));
+            user.setColor(c.getString(c.getColumnIndex(MyDatabase.USER_COLOR)));
             user.setLiving_status(c.getInt(c.getColumnIndex(MyDatabase.USER_LIVING_STATUS)));
 
             users.add(user);

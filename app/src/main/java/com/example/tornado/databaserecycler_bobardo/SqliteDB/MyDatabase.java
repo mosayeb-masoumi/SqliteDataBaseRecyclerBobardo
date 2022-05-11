@@ -24,6 +24,7 @@ public class MyDatabase extends SQLiteOpenHelper {
     public static final String USER_ID = "user_id";
     public static final String USER_NAME = "user_name";
     public static final String USER_FAMILY = "user_family";
+    public static final String USER_COLOR = "user_color";
     public static final String USER_LIVING_STATUS = "user_living_status";
 
 
@@ -46,6 +47,7 @@ public class MyDatabase extends SQLiteOpenHelper {
                 USER_ID + " INTEGER PRIMARY KEY, " +
                 USER_NAME + " TEXT NOT NULL, " +
                 USER_FAMILY + " TEXT NOT NULL, " +
+                USER_COLOR + " TEXT, " +
                 USER_LIVING_STATUS + " INTEGER DEFAULT 0);";          // boolean
 
 
