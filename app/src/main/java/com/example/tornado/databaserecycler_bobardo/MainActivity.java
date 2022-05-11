@@ -1,4 +1,5 @@
 package com.example.tornado.databaserecycler_bobardo;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
@@ -6,6 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.tornado.databaserecycler_bobardo.SqliteDB.DatabaseHelper;
+import com.example.tornado.databaserecycler_bobardo.model.Employee;
+import com.example.tornado.databaserecycler_bobardo.second_example.SecondActivity;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Button btn_second = (Button) findViewById(R.id.btn_second);
+        btn_second.setOnClickListener(view -> startActivity(new Intent(MainActivity.this , SecondActivity.class)));
+
+
 
         Button btnAdd = (Button) findViewById(R.id.btn_add);
         Button btnShowSearch = (Button) findViewById(R.id.btn_search);

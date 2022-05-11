@@ -11,12 +11,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.tornado.databaserecycler_bobardo.SqliteDB.DatabaseHelper;
+import com.example.tornado.databaserecycler_bobardo.model.Employee;
+
 import java.util.List;
 
 class MyListAdapter extends BaseAdapter {
 
-    private Context context;
-    private List<Employee> employees;
+    Context context;
+    List<Employee> employees;
 
     MyListAdapter(Context context, List<Employee> employees){
         this.context = context;

@@ -1,12 +1,17 @@
-package com.example.tornado.databaserecycler_bobardo;
+package com.example.tornado.databaserecycler_bobardo.SqliteDB;
 
 /**
  * Created by tornado on 1/4/2019.
  */
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.example.tornado.databaserecycler_bobardo.model.Employee;
+import com.example.tornado.databaserecycler_bobardo.model.UserModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +23,10 @@ public class DatabaseHelper {
         mydb = new MyDatabase(context).getWritableDatabase();
     }
 
+
+
+
+    /******************************************************  employees ********************************************************/
     public void addNewEmployee(Employee employee){
         ContentValues values = new ContentValues();
         values.put("name", employee.getName());
@@ -28,6 +37,7 @@ public class DatabaseHelper {
         mydb.close();
     }
 
+    @SuppressLint("Range")
     public List<Employee> getListOfEmployees(){
 
         Cursor c = mydb.rawQuery("select * from " + MyDatabase.tableEmployees, null);
@@ -64,6 +74,7 @@ public class DatabaseHelper {
         mydb.close();
     }
 
+    @SuppressLint("Range")
     public List<Employee> searchByName(String name){
 
         Cursor c = mydb.rawQuery("select * from " + MyDatabase.tableEmployees + " where name like '%" + name + "%'", null);
@@ -84,5 +95,71 @@ public class DatabaseHelper {
         mydb.close();
         return employees;
     }
+
+
+
+
+
+    /******************************************************  users ********************************************************/
+
+
+    public void insertUser(UserModel user){
+        ContentValues values = new ContentValues();
+        values.put("user_name" , user.getName());
+        values.put("user_family" , user.getFamily());
+        values.put("user_living_status" , user.getLiving_status());
+        mydb.insert(MyDatabase.tableUser , null , values);
+        mydb.close();
+    }
+
+
+    public void updateUser(UserModel user){
+        ContentValues values = new ContentValues();
+        values.put("user_name" , user.getName());
+        values.put("user_family" , user.getFamily());
+        values.put("user_living_status" , user.getLiving_status());
+        mydb.update(MyDatabase.tableUser , values , "user_id = " + user.getId() , null);
+        mydb.close();
+    }
+
+
+
+
+    // delete item
+    public void deleteUser(UserModel user){
+        mydb.delete(MyDatabase.tableUser, "user_id = " + user.getId(), null);
+        mydb.close();
+    }
+
+
+    // delete all table
+    public void deleteDBUser() {
+        mydb.delete(MyDatabase.tableUser, null, null);
+        mydb.close();
+    }
+
+
+    @SuppressLint("Range")
+    public List<UserModel> getListOfUsers(){
+
+        Cursor c = mydb.rawQuery("select * from " + MyDatabase.tableUser, null);
+        List<UserModel> users = new ArrayList<>();
+
+        while (c.moveToNext()){
+
+            UserModel user = new UserModel();
+            user.setId(c.getInt(c.getColumnIndex(MyDatabase.USER_ID)));
+            user.setName(c.getString(c.getColumnIndex(MyDatabase.USER_NAME)));
+            user.setFamily(c.getString(c.getColumnIndex(MyDatabase.USER_FAMILY)));
+            user.setLiving_status(c.getInt(c.getColumnIndex(MyDatabase.USER_LIVING_STATUS)));
+
+            users.add(user);
+        }
+
+        c.close();
+        mydb.close();
+        return users;
+    }
+
 
 }

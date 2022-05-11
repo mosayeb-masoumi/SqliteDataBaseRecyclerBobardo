@@ -1,4 +1,4 @@
-package com.example.tornado.databaserecycler_bobardo;
+package com.example.tornado.databaserecycler_bobardo.model;
 
 /**
  * Created by tornado on 1/4/2019.
@@ -7,10 +7,10 @@ package com.example.tornado.databaserecycler_bobardo;
 
 public class Employee {
 
-    private int id;
-    private String name;
-    private String phone;
-    private String address;
+    int id;
+    String name;
+    String phone;
+    String address;
 
     public String getPhone() {
         return phone;
