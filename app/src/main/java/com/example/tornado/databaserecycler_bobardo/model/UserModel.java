@@ -5,17 +5,18 @@ public class UserModel {
     int id;
     String name;
     String family;
-    String color;
+//    String color;
     int living_status;
 
 
     public UserModel() {
     }
 
-    public UserModel(String name, String family, String color ,  int living_status) {
+    public UserModel(String name, String family,int living_status) {
+//    public UserModel(String name, String family, String color ,  int living_status) {
         this.name = name;
         this.family = family;
-        this.color = color;
+//        this.color = color;
         this.living_status = living_status;
     }
 
@@ -43,13 +44,13 @@ public class UserModel {
         this.family = family;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
+//    public String getColor() {
+//        return color;
+//    }
+//
+//    public void setColor(String color) {
+//        this.color = color;
+//    }
 
     public int getLiving_status() {
         return living_status;

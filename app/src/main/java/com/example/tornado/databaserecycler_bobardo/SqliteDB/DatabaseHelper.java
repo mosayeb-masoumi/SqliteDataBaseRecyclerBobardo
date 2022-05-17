@@ -107,20 +107,21 @@ public class DatabaseHelper {
         ContentValues values = new ContentValues();
         values.put("user_name" , user.getName());
         values.put("user_family" , user.getFamily());
-        values.put("user_color" , user.getColor());
+//        values.put("user_color" , user.getColor());
         values.put("user_living_status" , user.getLiving_status());
-        mydb.insert(MyDatabase.tableUser , null , values);
+        mydb.insert(MyDatabase.user , null , values);
         mydb.close();
     }
+
 
 
     public void updateUser(UserModel user){
         ContentValues values = new ContentValues();
         values.put("user_name" , user.getName());
         values.put("user_family" , user.getFamily());
-        values.put("user_color" , user.getColor());
+//        values.put("user_color" , user.getColor());
         values.put("user_living_status" , user.getLiving_status());
-        mydb.update(MyDatabase.tableUser , values , "user_id = " + user.getId() , null);
+        mydb.update(MyDatabase.user , values , "user_id = " + user.getId() , null);
         mydb.close();
     }
 
@@ -129,14 +130,14 @@ public class DatabaseHelper {
 
     // delete item
     public void deleteUser(UserModel user){
-        mydb.delete(MyDatabase.tableUser, "user_id = " + user.getId(), null);
+        mydb.delete(MyDatabase.user, "user_id = " + user.getId(), null);
         mydb.close();
     }
 
 
     // delete all table
     public void deleteDBUser() {
-        mydb.delete(MyDatabase.tableUser, null, null);
+        mydb.delete(MyDatabase.user, null, null);
         mydb.close();
     }
 
@@ -144,7 +145,7 @@ public class DatabaseHelper {
     @SuppressLint("Range")
     public List<UserModel> getListOfUsers(){
 
-        Cursor c = mydb.rawQuery("select * from " + MyDatabase.tableUser, null);
+        Cursor c = mydb.rawQuery("select * from " + MyDatabase.user, null);
         List<UserModel> users = new ArrayList<>();
 
         while (c.moveToNext()){
@@ -153,7 +154,7 @@ public class DatabaseHelper {
             user.setId(c.getInt(c.getColumnIndex(MyDatabase.USER_ID)));
             user.setName(c.getString(c.getColumnIndex(MyDatabase.USER_NAME)));
             user.setFamily(c.getString(c.getColumnIndex(MyDatabase.USER_FAMILY)));
-            user.setColor(c.getString(c.getColumnIndex(MyDatabase.USER_COLOR)));
+//            user.setColor(c.getString(c.getColumnIndex(MyDatabase.USER_COLOR)));
             user.setLiving_status(c.getInt(c.getColumnIndex(MyDatabase.USER_LIVING_STATUS)));
 
             users.add(user);
